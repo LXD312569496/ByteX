@@ -334,3 +334,10 @@ if (revision.major <= 3 && revision.minor <= 5) {
     }
 
 }
+
+apply plugin: 'bytex.method-trace'
+
+MethodTracePlugin{
+    enable pluginEnable
+    enableInDebug pluginEnableInDebug
+}
