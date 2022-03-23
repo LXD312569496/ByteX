@@ -29,7 +29,7 @@ class MethodTracePlugin : CommonPlugin<MethodTraceExtension, MethodTraceContext>
     }
 
     override fun flagForClassReader(process: Process?): Int {
-        return ClassReader.SKIP_DEBUG or ClassReader.SKIP_FRAMES or ClassReader.EXPAND_FRAMES
+        return  ClassReader.EXPAND_FRAMES
 //        return ClassReader.EXPAND_FRAMES
     }
 

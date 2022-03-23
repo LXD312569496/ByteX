@@ -14,7 +14,7 @@ class TraceMethodVisitor(
         super.onMethodEnter()
         context.logger.i("TraceMethodVisitor onMethodEnter", "----插桩----className: $className  methodName: ${methodName}------")
         if (methodName != null) {
-            mv.visitLdcInsn("$className#$methodName");
+            mv.visitLdcInsn(generatorMethodName(className,methodName));
 ////            mv.visitMethodInsn(INVOKESTATIC, "com/ss/android/ugc/bytex/method_trace_lib/MyTrace", "beginSection", "(Ljava/lang/String;)V", false);
 //            mv.visitMethodInsn(INVOKESTATIC, "com/example/method_trace_lib/MyTrace", "beginSection", "(Ljava/lang/String;)V", false);
 
@@ -29,10 +29,10 @@ class TraceMethodVisitor(
     }
 
     override fun onMethodExit(opcode: Int) {
-        super.onMethodExit(opcode)
+//        super.onMethodExit(opcode)
         context.logger.i("TraceMethodVisitor onMethodExit", "----插桩----className: $className  methodName: ${methodName}------")
 //        mv.visitMethodInsn(INVOKESTATIC, "com/ss/android/ugc/bytex/method_trace_lib/MyTrace", "endSection", "()V", false);
-        if (methodName!=null){
+        if (methodName != null) {
 //            mv.visitMethodInsn(INVOKESTATIC, "com/example/method_trace_lib/MyTrace", "endSection", "()V", false);
             mv.visitMethodInsn(INVOKESTATIC,
                     "android/os/Trace",
@@ -40,7 +40,16 @@ class TraceMethodVisitor(
                     "()V",
                     false)
         }
+    }
 
-
+    /**
+     * android.os.Trace#MAX_SECTION_NAME_LEN,最长127
+     */
+    private fun generatorMethodName(className: String, methodName: String?): String {
+        val sectionName = "$className#$methodName"
+        if (sectionName.length < 127) {
+            return sectionName
+        }
+        return sectionName.take(127)
     }
 }
