@@ -10,7 +10,8 @@ class LargeBitmapClassVisitor(private var context: LargeBitmapContext, extension
     private val ImageViewClass = "android/support/v7/widget/AppCompatImageView"
     private val ImageViewClassX = "androidx/appcompat/widget/AppCompatImageView"
 
-    private val MyImageViewClass = "com/ss/android/ugc/bytex/example/MonitorImageView"
+//    private val MyImageViewClass = "com/ss/android/ugc/bytex/example/MonitorImageView"
+private val MyImageViewClass = "com/example/large_bitmap_lib/MonitorImageView"
 
 
     lateinit var mClassName: String

@@ -59,5 +59,8 @@ include ':method-trace-lib'
 project(':method-trace-lib').projectDir = new File('trace/method-trace-lib')
 
 include ':large-bitmap-plugin'
+project(':large-bitmap-plugin').projectDir = new File('large-bitmap/large-bitmap-plugin')
+include ':large-bitmap-lib'
+project(':large-bitmap-lib').projectDir = new File('large-bitmap/large-bitmap-lib')
 
 //pull request

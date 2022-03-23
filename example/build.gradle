@@ -36,6 +36,7 @@ buildscript {
         classpath "com.bytedance.android.byteX:method-trace-lib:${plugin_version}"
         classpath "com.bytedance.android.byteX:method-trace:${plugin_version}"
         classpath "com.bytedance.android.byteX:large-bitmap-plugin:${plugin_version}"
+        classpath "com.bytedance.android.byteX:large-bitmap-lib:${plugin_version}"
     }
 }
 
@@ -104,6 +105,6 @@ dependencies {
     implementation "com.bytedance.android.byteX:coverage-lib:${plugin_version}"
     implementation "com.bytedance.android.byteX:method-trace-lib:${plugin_version}"
 //    implementation "com.bytedance.android.byteX:large-bitmap-plugin:${plugin_version}"
-
+    implementation "com.bytedance.android.byteX:large-bitmap-lib:${plugin_version}"
 }
 apply from: project.file('plugin-bytex.gradle')
