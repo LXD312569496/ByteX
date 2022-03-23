@@ -7,9 +7,9 @@ import org.objectweb.asm.MethodVisitor
 class LargeBitmapClassVisitor(private var context: LargeBitmapContext, extension: LargeBitmapExtension?)
     : BaseClassVisitor() {
 
-    private val ImageViewClass = "android/widget/ImageView"
+    private val ImageViewClass = "android/support/v7/widget/AppCompatImageView"
+    private val ImageViewClassX = "androidx/appcompat/widget/AppCompatImageView"
 
-    private val AppCompatImageViewClass = "androidx/appcompat/widget/AppCompatImageView"
     private val MyImageViewClass = "com/ss/android/ugc/bytex/example/MonitorImageView"
 
 
@@ -22,8 +22,9 @@ class LargeBitmapClassVisitor(private var context: LargeBitmapContext, extension
     }
 
     override fun visit(version: Int, access: Int, name: String?, signature: String?, superName: String?, interfaces: Array<out String>?) {
-        if (!name.equals(MyImageViewClass) && superName.equals(ImageViewClass)) {
-            context.logger.i("name: ${name},superName: $superName")
+        context.logger.i("name: ${name},superName: $superName")
+
+        if (name.equals(ImageViewClass) || name.equals(ImageViewClassX)) {
             super.visit(version, access, name, signature, MyImageViewClass, interfaces)
         } else {
             super.visit(version, access, name, signature, superName, interfaces)
@@ -31,12 +32,9 @@ class LargeBitmapClassVisitor(private var context: LargeBitmapContext, extension
     }
 
     override fun visitMethod(access: Int, name: String?, descriptor: String?, signature: String?, exceptions: Array<out String>?): MethodVisitor {
-        context.logger.i("visitMethod name: ${name},descriptor: $descriptor")
+//        context.logger.i("visitMethod name: ${name},descriptor: $descriptor")
         return super.visitMethod(access, name, descriptor, signature, exceptions)
     }
-
-
-
 
 
 }

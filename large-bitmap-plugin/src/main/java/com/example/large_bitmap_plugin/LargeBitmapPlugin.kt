@@ -10,7 +10,7 @@ import com.ss.android.ugc.bytex.pluginconfig.anno.PluginConfig
 import org.gradle.api.Project
 
 @PluginConfig("bytex.large-bitmap")
-@Processor(implement = CustomFileProcessor::class, process = Process.TRAVERSE)
+//@Processor(implement = CustomFileProcessor::class, process = Process.TRAVERSE)
 class LargeBitmapPlugin : CommonPlugin<LargeBitmapExtension, LargeBitmapContext>() {
 
     override fun getContext(project: Project, android: AppExtension, extension: LargeBitmapExtension?): LargeBitmapContext {
@@ -19,7 +19,7 @@ class LargeBitmapPlugin : CommonPlugin<LargeBitmapExtension, LargeBitmapContext>
 
 
     override fun traverse(relativePath: String, chain: ClassVisitorChain) {
-        context.logger.i("traverse relativePath:$relativePath")
+//        context.logger.i("traverse relativePath:$relativePath")
 
 //        super.traverse(relativePath, chain)
 //        chain.connect(MonitorImageViewClassVisitor())
@@ -28,8 +28,8 @@ class LargeBitmapPlugin : CommonPlugin<LargeBitmapExtension, LargeBitmapContext>
     }
 
     override fun transform(relativePath: String, chain: ClassVisitorChain): Boolean {
-        context.logger.i("transform relativePath:$relativePath")
-//        chain.connect(LargeBitmapClassVisitor(context, extension))
+//        context.logger.i("transform relativePath:$relativePath")
+        chain.connect(LargeBitmapClassVisitor(context, extension))
 //        chain.connect(MonitorImageViewClassVisitor(context))
         return super.transform(relativePath, chain)
     }

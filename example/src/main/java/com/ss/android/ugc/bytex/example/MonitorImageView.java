@@ -4,11 +4,15 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Looper;
 import android.os.MessageQueue;
 import android.util.AttributeSet;
 import android.util.Log;
 
-public class MonitorImageView extends android.support.v7.widget.AppCompatImageView implements MessageQueue.IdleHandler {
+/**
+ * 注意：是继承 android.widget.ImageView
+ */
+public class MonitorImageView extends android.widget.ImageView implements MessageQueue.IdleHandler {
 
     private static final String TAG = "MonitorImageView";
     private final int MAX_ALARM_IMAGE_SIZE = 1024;
@@ -41,9 +45,8 @@ public class MonitorImageView extends android.support.v7.widget.AppCompatImageVi
     }
 
     private void monitor() {
-//        Looper.myQueue().removeIdleHandler(this);
-//        Looper.myQueue().addIdleHandler(this);
-        checkDrawable();
+        Looper.myQueue().removeIdleHandler(this);
+        Looper.myQueue().addIdleHandler(this);
     }
 
     @Override
