@@ -53,3 +53,4 @@ include ':coverage-lib'
 project(':coverage-lib').projectDir = new File('coverage/coverage-lib')
 
 //pull request
+include ':gson-parser-plugin'
